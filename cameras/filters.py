@@ -1,13 +1,14 @@
 # Path: cameras/filters.py
 from scipy import signal
 import numpy as np
+import numpy.typing as npt
 
 class Filters:
     #TODO: add buffer
     def __init__(self):
         pass
 
-    def butterLowPass2D(x, cutoff, fs, order=5):
+    def butterLowPass2D(x : npt.NDArray[np.float64], cutoff : float, fs : float, order=5 : int):
         """
         Inputs:
             u: 2-d numpy array containing the input signal to be filtered
@@ -24,7 +25,7 @@ class Filters:
         y = signal.filtfilt(b, a, y, axis=1)
         return y
 
-    def causalLowPass(x,alpha):
+    def causalLowPass(x : npt.NDArray[np.float64], alpha : float):
         """
         Inputs:
             u: 1-d numpy array containing the input signal to be filtered
@@ -35,7 +36,7 @@ class Filters:
         y = signal.lfilter([1 - alpha], [1, -alpha], x)
         return y
 
-    def causalLowPass2D(x, cutoff, fs, order=5):
+    def causalLowPass2D(x : npt.NDArrray[np.float64], cutoff : float, fs : float, order=5 : int):
         """
         Inputs:
             u: 2-d numpy array containing the input signal to be filtered
@@ -53,7 +54,7 @@ class Filters:
         return y
 
 
-    def nonCausalLowPass(x,alpha):
+    def nonCausalLowPass(x : npt.NDArray[np.float64], alpha : float):
         """
         Inputs:
             u: 1-d numpy array containing the input signal to be filtered
@@ -65,7 +66,7 @@ class Filters:
         return y
         
 
-    def make_square(frame):
+    def make_square(frame : npt.NDArray[np.float64]):
         #  make the frame square by cropping the longer side
         h, w = frame.shape[:2]
         if h > w:
