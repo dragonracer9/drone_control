@@ -17,16 +17,16 @@ class Camera_Wrapper:
         f = open(filename)
         self.camera_params = json.load(f)
         
+        #c = Camera([0,1], fps=[30, 60], resolution=[Camera.RES_LARGE, Camera.RES_SMALL], colour=[True, False])
         self.cams = Camera(ids=CAMERAIDS, fps=90, auto_gain=true) #  TODO: tweak: gain (0-63), exposure (0-1023), auto_gain (True/False), auto_exposure (True/False), auto_white_balance (True/False), white_balance (0-63)
         self.disp = Display(c) # begin the display
         
     def test(self):
         print("Testing")
         self.cams.checkfps()
-        self.disp.show(self.cams.get_frames())
         
         
-    def edit_cams(self, exposure, gain, white_balance):
+    def edit_cams(self, exposure, gain, white_balance): # TODO: maybe individual camera control and seperate exposure, gain, white_balance
         self.cams.exposure = [exposure]*len(self.CAMERAIDS)
         self.cams.gain = [gain]*len(self.CAMERAIDS)
         self.cams.white_balance = [white_balance]*len(self.CAMERAIDS)
