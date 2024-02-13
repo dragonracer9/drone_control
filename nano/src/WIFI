@@ -1,0 +1,25 @@
+// Path: nano/src/WIFI
+/**
+ * @file WIFI
+ * @author Vikram Damani
+ * @brief
+ * @version 0.1
+ * @date
+ *
+ * @copyright Copyright (c) 2023
+ *
+ */
+
+#include "../includes/WIFI.h"
+
+void WIFI_ESP::init()
+{
+
+    this->cfg = WIFI_INIT_CONFIG_DEFAULT();
+    esp_wifi_init(&cfg);
+    esp_wifi_get_config(ESP_IF_WIFI_STA, &wifi_config);
+    wifi_config.sta.ssid[0] = 0;
+    wifi_config.sta.password[0] = 0;
+    esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config);
+    esp_wifi_start();
+}
