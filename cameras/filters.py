@@ -21,7 +21,7 @@ class Filters:
         nyquist = 0.5 * fs
         normal_cutoff = cutoff / nyquist
         b, a = signal.butter(order, normal_cutoff, btype='low', analog=False)
-        y = signal.filtfilt(b, a, x, axis=0) # lfilt is slow
+        y = signal.filtfilt(b, a, x, axis=0) # lfilt is slow   FIXME: why am i overwriting y?
         y = signal.filtfilt(b, a, y, axis=1)
         return y
 
